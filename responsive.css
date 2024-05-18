@@ -1,0 +1,48 @@
+
+
+@media screen  and (max-width:1000px) {
+    .text-p2{
+        font-size: 0.9rem;
+    }
+    .titre{
+        font-size: 2rem;
+    }
+    .img-acceuil {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media screen  and (max-width:900px) {
+    .text-p2{
+        font-size: 0.8rem;
+    }
+    .titre{
+        font-size: 1.8rem;
+    }
+    .img-acceuil {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+
+
+@media screen  and (max-width:800px) {
+    #nav-bar{
+        display: none;
+    }
+    #nav-responsive{
+        display: flex;
+    }
+    .text-p2{
+        font-size: 0.5rem;
+    }
+    .text-p1{
+        font-size: 0.4rem;
+    }
+    .titre{
+        font-size: 1.3rem;
+    }
+
+
+}
