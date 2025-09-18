@@ -1,23 +1,23 @@
 /* Thème clair */
 :root {
-  --primary: #7ba2b1;      /* Vert principal */
-  --secondary: #c5a880;    /* Beige clair */
-  --bg: #fdfcf7;           /* Fond clair/beige */
-  --text: #1e1e1e;         /* Texte foncé */
-  --muted: #6c757d;        /* Texte secondaire */
-  --card-bg: #ffffff;      /* Fond des cartes */
+  --primary: #7ba2b1; /* Vert principal */
+  --secondary: #c5a880; /* Beige clair */
+  --bg: #fdfcf7; /* Fond clair/beige */
+  --text: #1e1e1e; /* Texte foncé */
+  --muted: #6c757d; /* Texte secondaire */
+  --card-bg: #ffffff; /* Fond des cartes */
   --btn-bg: var(--primary);
   --btn-text: #fff;
 }
 
 /* Thème sombre */
 body.dark-theme {
-   --primary: #7ba2b1;      /* Vert doux */
-  --secondary: #b8b8a9;    /* Beige/gris clair */
-  --bg: #1a1c20;           /* Fond sombre */
-  --text: #f5f5f5;         /* Texte clair */
-  --muted: #aaa;           /* Texte secondaire */
-  --card-bg: #24272d;      /* Fond cartes sombre */
+  --primary: #7ba2b1; /* Vert doux */
+  --secondary: #b8b8a9; /* Beige/gris clair */
+  --bg: #1a1c20; /* Fond sombre */
+  --text: #f5f5f5; /* Texte clair */
+  --muted: #aaa; /* Texte secondaire */
+  --card-bg: #24272d; /* Fond cartes sombre */
   --btn-bg: var(--primary);
   --btn-text: #1a1c20;
   a {
@@ -412,10 +412,10 @@ body.dark-theme .card {
   color: #fff;
   border: none;
   cursor: pointer;
-    display: flex;              /* Centrage */
-  align-items: center;        /* Centre verticalement */
-  justify-content: center;    /* Centre horizontalement */
-  text-decoration: none;  
+  display: flex; /* Centrage */
+  align-items: center; /* Centre verticalement */
+  justify-content: center; /* Centre horizontalement */
+  text-decoration: none;
 }
 .button:hover::before {
   transform: scaleX(1);
@@ -423,7 +423,7 @@ body.dark-theme .card {
 .button-content {
   position: relative;
   z-index: 1;
-   text-decoration: none;
+  text-decoration: none;
 }
 .button::before {
   content: "";
@@ -459,7 +459,7 @@ body.dark-theme .card {
   left: 0%;
   height: 3px;
   width: 0;
-  background: var(--muted);   /* ligne dépend de la couleur du thème */
+  background: var(--muted); /* ligne dépend de la couleur du thème */
   border-radius: 3px;
   transition: width 0.2s linear;
 }
@@ -472,7 +472,7 @@ body.dark-theme .card {
   transform: translateY(-50%) rotate(0deg);
   width: 0;
   height: 0;
-  border-left: 14px solid var(--primary);   /* flèche prend la couleur principale */
+  border-left: 14px solid var(--primary); /* flèche prend la couleur principale */
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
 }
@@ -482,8 +482,8 @@ body.dark-theme .card {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: var(--bg);              /* fond = couleur de fond du thème */
-  border: 3px solid var(--primary);   /* contour = couleur principale */
+  background: var(--bg); /* fond = couleur de fond du thème */
+  border: 3px solid var(--primary); /* contour = couleur principale */
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -494,7 +494,7 @@ body.dark-theme .card {
 /* point actif */
 .point.active {
   opacity: 1;
-  background: var(--primary);   /* quand actif, rempli avec couleur principale */
+  background: var(--primary); /* quand actif, rempli avec couleur principale */
   border-color: var(--primary);
   transform: translate(-50%, -50%) scale(1.2);
 }
@@ -507,14 +507,14 @@ body.dark-theme .card {
   transform: translateX(-50%);
   font-size: 14px;
   font-weight: bold;
-  white-space: pre-line;   /* conserve la forme du texte (avec <br/>) */
+  white-space: pre-line; /* conserve la forme du texte (avec <br/>) */
   opacity: 0;
   transition: opacity 0.6s;
   text-align: center;
   min-width: 350px;
   max-width: 80vw;
   line-height: 1.4;
-  color: var(--text);       /* couleur de texte selon thème */
+  color: var(--text); /* couleur de texte selon thème */
 }
 
 .point.active span {
@@ -535,7 +535,7 @@ body.dark-theme .card {
   #about {
     padding-top: 60px;
   }
- 
+
   .progress-line {
     top: 10%;
     left: 0;
@@ -576,7 +576,7 @@ body.dark-theme .card {
     top: 50%;
     transform: translateY(-50%);
     white-space: normal;
-     min-width: 400px; /* largeur minimale plus grande */
+    min-width: 400px; /* largeur minimale plus grande */
     max-width: 80vw;
     text-align: left;
     position: absolute;
@@ -648,7 +648,6 @@ body.dark-theme .card {
   object-fit: cover;
   transition: opacity 0.5s ease;
   background-color: #0c2a37;
-  
 }
 .card-content {
   position: absolute;
@@ -769,7 +768,6 @@ body.dark-theme .card {
   box-shadow: 0 6px 15px rgba(36, 37, 39, 0.4);
   background: var(--btn-bg);
   color: var(--btn-text);
-
 }
 
 /* Footer */
@@ -795,10 +793,9 @@ footer {
     margin-top: 250px;
   }
 
-  #home h1{
+  #home h1 {
     margin-top: 50px;
   }
-
 
   /* Positionne .toggleetlongue à gauche de la navbar sur mobile */
   .toggleetlongue {
@@ -845,8 +842,8 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 70px;   /* réduit */
-  width: 70px;    /* réduit */
+  height: 70px; /* réduit */
+  width: 70px; /* réduit */
   background-color: #0a0a0a;
   border-radius: 5px;
   color: #0f0f0f;
@@ -867,7 +864,7 @@ footer {
 .light-button .light-holder {
   position: absolute;
   height: 120px; /* réduit */
-  width: 70px;   /* réduit */
+  width: 70px; /* réduit */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -876,7 +873,7 @@ footer {
 .light-button .light-holder .dot {
   position: absolute;
   top: 0;
-  width: 6px;  /* réduit */
+  width: 6px; /* réduit */
   height: 6px; /* réduit */
   background-color: #0a0a0a;
   border-radius: 50%;
@@ -886,7 +883,7 @@ footer {
 .light-button .light-holder .light {
   position: absolute;
   top: 0;
-  width: 120px;  /* réduit */
+  width: 120px; /* réduit */
   height: 120px; /* réduit */
   clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
   background: transparent;
@@ -915,4 +912,70 @@ footer {
   font-size: 13px;
   margin-top: 4px;
   display: block;
+}
+
+@media (max-width: 515px) {
+  .rsc {
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .icon-content {
+    margin-top: 20px;
+  }
+}
+
+.navbar-toggler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1.5px solid #7ba2b1;
+  color: #1e1e1e;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+body.dark-theme .navbar-toggler {
+  background: #222;
+  border: 1.5px solid #7ba2b1;
+  color: #fff;
+}
+
+.navbar-toggler-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  background-image: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-toggler-icon::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #1e1e1e;
+  box-shadow:
+    0 8px 0 0 #1e1e1e,
+    0 16px 0 0 #1e1e1e;
+  border-radius: 2px;
+  transition: background 0.3s, box-shadow 0.3s;
+  position: absolute;
+  top: 3px;
+  left: 0;
+}
+
+body.dark-theme .navbar-toggler-icon::before {
+  background: #fff;
+  box-shadow:
+    0 8px 0 0 #fff,
+    0 16px 0 0 #fff;
 }
