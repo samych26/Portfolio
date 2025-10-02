@@ -219,7 +219,8 @@ header#home .display-5 {
 }
 
 #skills {
-  margin-top: -100px; /* Remonte la section, ajuste la valeur selon le rendu souhaité */
+  margin-top: 50px; /* pousse la section vers le bas */
+  padding-top: 50px; 
 }
 /* Skills scrolling */
 .skills-wrap {
@@ -404,8 +405,8 @@ body.dark-theme .card {
 .button {
   position: relative;
   overflow: hidden;
-  height: 3rem;
-  padding: 0 2rem;
+  height: 2.5rem;
+  padding: 0 1rem;
   border-radius: 1.5rem;
   background: #3d3a4e;
   background-size: 400%;
@@ -583,11 +584,183 @@ body.dark-theme .card {
     font-size: 15px;
   }
 }
+/* Conteneur général */
+.diplome-book-wrapper {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+/* Grid des livres */
+.diplome-books-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+}
+
+/* Book 3D */
+.diplome-book {
+  position: relative;
+  width: 220px;
+  height: 300px;
+  perspective: 2000px;
+}
+
+.cover, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 1px 1px 12px #000;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s;
+}
+
+.cover {
+  background-color: lightgray;
+  cursor: pointer;
+  transform-origin: left;
+}
+
+.cover img.diplome-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+
+.diplome-book:hover .cover {
+  transform: rotateY(-180deg);
+}
+
+.diplome-book:hover .back {
+  transform: rotateY(0deg);
+}
+
+
+.back {
+  background-color: whitesmoke;
+  color: #000;
+  transform: rotateY(180deg);
+  flex-direction: column;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between; /* bouton en bas */
+  align-items: center;
+}
+
+.back p {
+  font-size: 15px;
+  font-weight: 500;
+  padding-top: 20px;
+  text-align: center;
+  
+}
+
+/* === Bouton circulaire Download === */
+.diplome-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(27, 27, 27);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.11);
+}
+
+.diplome-icon {
+  fill: rgb(214, 178, 255);
+}
+
+.diplome-icon-bar {
+  width: 18px;
+  height: 5px;
+  border-bottom: 2px solid rgb(182, 143, 255);
+  border-left: 2px solid rgb(182, 143, 255);
+  border-right: 2px solid rgb(182, 143, 255);
+}
+.diplome-cards{
+  padding-top: 40px;
+}
+
+.diplome-tooltip {
+  position: absolute;
+  right: -105px;
+  opacity: 0;
+  background-color: rgb(12, 12, 12);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: .2s;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.diplome-tooltip::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: rgb(12, 12, 12);
+  transform: rotate(45deg);
+  left: -5%;
+}
+
+.diplome-btn:hover .diplome-tooltip {
+  opacity: 1;
+  transition-duration: .3s;
+}
+
+.diplome-btn:hover {
+  background-color: rgb(150, 94, 255);
+  transition-duration: .3s;
+}
+
+.diplome-btn:hover .diplome-icon-bar {
+  border-bottom: 2px solid rgb(235, 235, 235);
+  border-left: 2px solid rgb(235, 235, 235);
+  border-right: 2px solid rgb(235, 235, 235);
+}
+
+.diplome-btn:hover .diplome-icon {
+  fill: rgb(255, 255, 255);
+  animation: diplome-slide-in-top 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes diplome-slide-in-top {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+
+
 /* Skills slider */
 .skills-slider {
   overflow: hidden;
   position: relative;
   width: 100%;
+ 
 }
 .slide-track {
   display: flex;
@@ -979,3 +1152,5 @@ body.dark-theme .navbar-toggler-icon::before {
     0 8px 0 0 #fff,
     0 16px 0 0 #fff;
 }
+
+

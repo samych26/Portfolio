@@ -28,17 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----- Translations -----
   const translations = {
     fr: {
-      nav: ["ACCUEIL","À PROPOS","FORMATIONS","COMPÉTENCES","PROJETS","CONTACT"],
+      nav: ["ACCUEIL","À PROPOS","FORMATIONS","DIPLOMES","COMPÉTENCES","PROJETS","CONTACT"],
       homeTitle: "Je suis <span style='font-size:1.3em;font-weight:bold'>Samy Cherfa</span>",
-      btnCv: "Télécharger le CV",
+      btnCv: "Télécharger CV",
       profilTitle: '<i class="bi bi-person-circle me-2"></i> Profil',
       profilDesc1: "Je m'appelle <strong>Samy Cherfa</strong>, étudiant en 3ᵉ année de Bachelor <em>Concepteur et Développeur d'Applications</em> à l'<strong>ECE Paris</strong>.",
-      profilDesc2: "Passionné par le développement <strong>web</strong> et <strong>mobile</strong>, j’aime concevoir des solutions modernes, intuitives et performantes, qui offrent une véritable valeur ajoutée aux utilisateurs. Mon objectif est de continuer à progresser, d’enrichir mes compétences techniques et créatives, et de contribuer à des projets ambitieux où innovation et efficacité se rejoignent.",
+      profilDesc2: "Passionné par le développement <strong>web</strong> et <strong>mobile</strong>, j'aime concevoir des solutions modernes, intuitives et performantes, qui offrent une véritable valeur ajoutée aux utilisateurs. Mon objectif est de continuer à progresser, d'enrichir mes compétences techniques et créatives, et de contribuer à des projets ambitieux où innovation et efficacité se rejoignent.",
       formations: "🎓 Formations",
+      diplomes: "📜 Mes DIPLOMES",
       timeline: [
-        "BACCALAURÉAT <br> Technique Mathématique <br> 2021-2022, Lycée El Hammadia",
-        "LICENCE <br> Systèmes Informatiques <br> 2022-2025, Université Abderrahmane Mira",
-        "BACHELOR 3 <br> Concepteur et Développeur d'Applications <br> rentrée 2025, ECE Paris"
+        "BACCALAURÉAT <br> Série: Technique Mathématique - Génie Civil <br> 2021 - 2022, Lycée El Hammadia <br>",
+        "LICENCE <br> Systèmes Informatiques <br> 2022 - 2025, Université Abderrahmane Mira <br>",
+        "BACHELOR 3 <br> Concepteur et Développeur d'Applications <br> rentrée 2025, ECE Paris – École d'ingénieurs <br>"
+      ],
+      diplomeCertificates: [
+        "Formation Udemy axée sur le développement mobile avec Flutter et Dart, couvrant la création d'applications performantes et modernes pour Android et iOS.",
+        "Formation Udemy en web design et Figma, axée sur la création d'interfaces modernes et l'UX/UI.",
+        "Formation POO en Java à l'école Tusna, axée sur les concepts avancés de la programmation orientée objet et la réalisation de projets pratiques."
       ],
       competences: "💡 Mes Compétences",
       projets: '<i class="bi bi-code-slash me-2"></i> Projets',
@@ -47,20 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
       placeholders: ["Ton nom", "Ton email", "Ton message"],
       contactBtn: "Envoyer",
       footer: "© {year} Samy Cherfa — Portfolio",
-      typewriter: "Étudiant à l’ECE Paris, en 3ᵉ année de Bachelor Concepteur & Développeur d’Applications."
+      typewriter: "Étudiant à l'ECE Paris, en 3ᵉ année de Bachelor Concepteur & Développeur d'Applications."
     },
     en: {
-      nav: ["HOME","ABOUT","EDUCATION","SKILLS","PROJECTS","CONTACT"],
+      nav: ["HOME","ABOUT","EDUCATION","DIPLOMAS","SKILLS","PROJECTS","CONTACT"],
       homeTitle: "I am <span style='font-size:1.3em;font-weight:bold'>Samy Cherfa</span>",
       btnCv: "Download CV",
       profilTitle: '<i class="bi bi-person-circle me-2"></i> Profile',
       profilDesc1: "My name is <strong>Samy Cherfa</strong>, a 3rd-year Bachelor student in <em>Application Design and Development</em> at <strong>ECE Paris</strong>.",
       profilDesc2: "Passionate about <strong>web</strong> and <strong>mobile</strong> development, I love designing modern, intuitive and high-performance solutions that bring real value to users. My goal is to keep improving, enrich my technical and creative skills, and contribute to ambitious projects where innovation meets efficiency.",
       formations: "🎓 Education",
+      diplomes: "📜 My Diplomas",
       timeline: [
-        "BACCALAUREATE <br> Technical Mathematics <br> 2021-2022, Lycée El Hammadia",
-        "BACHELOR'S DEGREE <br> Computer Systems <br> 2022-2025, Abderrahmane Mira University",
-        "BACHELOR 3 <br> Application Design and Development <br> 2025 intake, ECE Paris"
+        "BACCALAUREATE <br> Series: Technical Mathematics - Civil Engineering <br> 2021 - 2022, Lycée El Hammadia <br>",
+        "BACHELOR'S DEGREE <br> Computer Systems <br> 2022 - 2025, Abderrahmane Mira University <br>",
+        "BACHELOR 3 <br> Application Design and Development <br> 2025 intake, ECE Paris – Engineering School <br>"
+      ],
+      diplomeCertificates: [
+        "Udemy training focused on mobile development with Flutter and Dart, covering the creation of high-performance and modern applications for Android and iOS.",
+        "Udemy training in web design and Figma, focused on creating modern interfaces and UX/UI.",
+        "OOP training in Java at Tusna school, focused on advanced object-oriented programming concepts and practical project implementation."
       ],
       competences: "💡 My Skills",
       projets: '<i class="bi bi-code-slash me-2"></i> Projects',
@@ -115,23 +127,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Formations / timeline
     const formationsH2 = document.querySelector("#formations h2");
     if (formationsH2) formationsH2.textContent = safeText(t.formations);
+    
+    // Diplômes (titre)
+    const diplomesH3 = document.querySelector("#diplomes .diplome-title");
+    if (diplomesH3) diplomesH3.textContent = safeText(t.diplomes);
+    
+    // Timeline (points)
     const timelineSpans = document.querySelectorAll("#formations .point span");
     timelineSpans.forEach((span, i) => {
       if (t.timeline[i]) span.innerHTML = safeText(t.timeline[i]);
+    });
+
+    // Diplômes (textes des certificats dans .back p)
+    const diplomeCertificateTexts = document.querySelectorAll("#diplomes .back p");
+    diplomeCertificateTexts.forEach((p, i) => {
+      if (t.diplomeCertificates && t.diplomeCertificates[i]) {
+        p.textContent = safeText(t.diplomeCertificates[i]);
+      }
     });
 
     // Compétences
     const skillsH2 = document.querySelector("#skills h2");
     if (skillsH2) skillsH2.textContent = safeText(t.competences);
 
-    // Projets (boutons)
+    // Projets
+    const projectsH2 = document.querySelector("#projects h2");
+    if (projectsH2) projectsH2.innerHTML = safeText(t.projets);
+
+    // Projets (boutons GitHub)
     const projectButtons = document.querySelectorAll("#projects .button-holder p");
     projectButtons.forEach(p => p.textContent = safeText(t.github));
 
-    // Contact (placeholders) - utilise id si présent, sinon fallback par query
-    const contactName = document.getElementById('contact-name') || document.querySelector('#contact input[type="text"]');
-    const contactEmail = document.getElementById('contact-email') || document.querySelector('#contact input[type="email"]');
-    const contactMsg = document.getElementById('contact-message') || document.querySelector('#contact textarea');
+    // Contact (titre)
+    const contactH2 = document.querySelector("#contact h2");
+    if (contactH2) contactH2.textContent = safeText(t.contact);
+
+    // Contact (placeholders)
+    const contactName = document.getElementById('contact-name');
+    const contactEmail = document.getElementById('contact-email');
+    const contactMsg = document.getElementById('contact-message');
     if (contactName) contactName.placeholder = safeText(t.placeholders[0]);
     if (contactEmail) contactEmail.placeholder = safeText(t.placeholders[1]);
     if (contactMsg) contactMsg.placeholder = safeText(t.placeholders[2]);
@@ -161,11 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rect = section.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-    const screenMiddle = windowHeight / 1.1;
-    let progress = (screenMiddle - rect.top) / rect.height;
-    progress = Math.min(Math.max(progress, 0), 1);
 
     if (window.innerWidth <= 768) {
+      const screenMiddle = windowHeight / 0.4;
+      let progress = (screenMiddle - rect.top) / rect.height;
+      progress = Math.min(Math.max(progress, 0), 0.9);
       const timelineHeight = timeline.offsetHeight * 0.8;
       const minTop = timeline.offsetHeight * 0.1;
       const currentHeight = progress * timelineHeight;
@@ -179,6 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
         point.classList.toggle("active", progressPercent >= step);
       });
     } else {
+      const screenMiddle = windowHeight / 0.85;
+      let progress = (screenMiddle - rect.top) / rect.height;
+      progress = Math.min(Math.max(progress, 0), 1);
       const timelineWidth = timeline.offsetWidth * 0.8;
       const minLeft = timeline.offsetWidth * 0.1;
       const currentWidth = progress * timelineWidth;
@@ -204,17 +241,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // active nav link
   function activateNavLink() {
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-    const scrollPos = window.scrollY + 80;
-    sections.forEach(section => {
-      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + section.id);
-        });
-      }
-    });
-  }
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+  const scrollPos = window.scrollY + navbarHeight + 50; // offset pour la navbar + marge
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    
+    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + section.id);
+      });
+    }
+  });
+}
+
+// Remplace le smooth scroll par :
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+      const targetPosition = target.offsetTop - navbarHeight - 80; 
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
 
   // ----- Language select init -----
   const savedLang = localStorage.getItem('lang') || 'fr';
@@ -229,29 +288,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ----- Smooth scroll for internal links (delegation) -----
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    });
-  });
+ 
 
   // initial calls
   updateTimeline();
   activateNavLink();
 });
 
+// Initialiser EmailJS
+(function() {
+  emailjs.init("4cIJSsFLljKsZzE3e");
+})();
 
- // Initialiser EmailJS
-  (function() {
-    emailjs.init("4cIJSsFLljKsZzE3e"); // 👉 Remplace par ta clé publique
-  })();
-
-  // Gestion du formulaire
+// Gestion du formulaire
 document.getElementById("contact-form").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -284,9 +333,8 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
       feedback.style.color = "green";
       e.target.reset();
     }, function(error) {
-      feedback.textContent = "❌ Erreur lors de l’envoi. Réessaye.";
+      feedback.textContent = "❌ Erreur lors de l'envoi. Réessaye.";
       feedback.style.color = "red";
       console.error("EmailJS Error:", error);
     });
 });
-  
