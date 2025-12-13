@@ -5,44 +5,57 @@ import glob
 ASSETS_DIR = r"c:\Users\samyc\OneDrive\Bureau\portfolio\assets"
 
 def optimize_images():
-    # Targeted files to convert based on previous list_dir
-    files_to_process = [
-        "Mobile.jpg", "Design.jpg", "Portrait.png", "java.jpg", 
-        "pdp.jpg", "pdp2.jpg", "qoffa.png", "Echos.png", "logo.png"
+    # Mapping of source file -> (output filename, max_width)
+    # If source is different from current usage (e.g. using _opt versions currently), 
+    # we use the high-res source to generate the new webp.
+    
+    images_to_process = [
+        # (Source File, Output Name, Max Width)
+        ("Portrait.png", "Portrait.webp", 800),  # Hero image, intrinsic is ~350 but keep quality high
+        ("Mobile.jpg", "Mobile.webp", 1200),    # Book cover
+        ("Design.jpg", "Design.webp", 1200),    # Book cover
+        ("java.jpg", "java.webp", 1200),        # Book cover
+        ("qoffa.png", "qoffa.webp", 800),       # Project image
+        ("Echos.png", "Echos.webp", 800),       # Project image
+        ("logo.png", "logo.webp", 800),         # Project image (PlayMaster)
+        ("Pong-game.ico", "Pong-game.webp", 64) # Icon used as 16x16, resize drastically
     ]
 
-    for filename in files_to_process:
-        filepath = os.path.join(ASSETS_DIR, filename)
-        if not os.path.exists(filepath):
-            print(f"Skipping {filename}, not found.")
+    for source_file, output_name, max_wd in images_to_process:
+        source_path = os.path.join(ASSETS_DIR, source_file)
+        output_path = os.path.join(ASSETS_DIR, output_name)
+
+        if not os.path.exists(source_path):
+            print(f"Skipping {source_file}, not found.")
             continue
 
         try:
-            with Image.open(filepath) as img:
-                # Calculate new dimensions if image is very large
-                # Max width 1200px should be sufficient for this portfolio usage
-                MAX_WIDTH = 1200
-                if img.width > MAX_WIDTH:
-                    ratio = MAX_WIDTH / img.width
+            with Image.open(source_path) as img:
+                # Handle RGBA for transparent pngs
+                if img.mode in ('RGBA', 'LA') or (img.mode == 'P' and 'transparency' in img.info):
+                    # Keep transparency
+                    pass
+                else:
+                    # Convert to RGB to ensure compatibility if needed (though WebP supports both)
+                    img = img.convert('RGB')
+
+                # Resize if larger than max_wd
+                if img.width > max_wd:
+                    ratio = max_wd / img.width
                     new_height = int(img.height * ratio)
-                    img = img.resize((MAX_WIDTH, new_height), Image.Resampling.LANCZOS)
-                    print(f"Resized {filename} to {MAX_WIDTH}x{new_height}")
+                    img = img.resize((max_wd, new_height), Image.Resampling.LANCZOS)
+                    print(f"Resized {source_file} to {max_wd}x{new_height}")
 
                 # Save as WebP
-                basename = os.path.splitext(filename)[0]
-                webp_path = os.path.join(ASSETS_DIR, f"{basename}.webp")
+                # Quality 85 is a good balance for WebP
+                img.save(output_path, "WEBP", quality=85)
                 
-                # Use slightly higher quality for portrait to maintain details
-                quality = 85 if "Portrait" in filename else 80
-                
-                img.save(webp_path, "WEBP", quality=quality)
-                
-                old_size = os.path.getsize(filepath)
-                new_size = os.path.getsize(webp_path)
-                print(f"Converted {filename}: {old_size//1024}KB -> {new_size//1024}KB")
+                old_size = os.path.getsize(source_path)
+                new_size = os.path.getsize(output_path)
+                print(f"Converted {source_file}: {old_size//1024}KB -> {new_size//1024}KB")
 
         except Exception as e:
-            print(f"Error processing {filename}: {e}")
+            print(f"Error processing {source_file}: {e}")
 
 if __name__ == "__main__":
     optimize_images()
