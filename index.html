@@ -9,25 +9,68 @@
     <title>Portfolio — SamyCh</title>
 
     <!-- Bootstrap CSS (CDN) -->
-    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      media="print" onload="this.media='all'"
     />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      media="print" onload="this.media='all'"
     />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"></noscript>
 
     <!-- Font Awesome pour les icônes -->
-    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      media="print" onload="this.media='all'"
     />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
     <!-- Ton CSS -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://samych26.github.io/Portfolio/" />
+    <meta property="og:title" content="Portfolio — Samy Cherfa" />
+    <meta property="og:description" content="Portfolio de Samy Cherfa - Développeur Web et Mobile" />
+    <meta property="og:image" content="assets/Portrait.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://samych26.github.io/Portfolio/" />
+    <meta property="twitter:title" content="Portfolio — Samy Cherfa" />
+    <meta property="twitter:description" content="Portfolio de Samy Cherfa - Développeur Web et Mobile" />
+    <meta property="twitter:image" content="assets/Portrait.png" />
+
+    <!-- Mobile Icons -->
+    <link rel="apple-touch-icon" href="assets/Portrait.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Samy Cherfa",
+      "url": "https://samych26.github.io/Portfolio/",
+      "image": "assets/Portrait.png",
+      "jobTitle": "Développeur Web et Mobile",
+      "knowsAbout": ["Java", "Flutter", "PHP", "HTML", "CSS", "JavaScript"],
+      "sameAs": [
+        "https://www.linkedin.com/in/samy-cherfa", 
+        "https://github.com/samych26",
+        "https://www.instagram.com/samy.chrf/"
+      ]
+    }
+    </script>
   </head>
 
   <body>
@@ -75,6 +118,7 @@
             id="lang-select"
             class="form-select form-select-sm"
             style="width: auto"
+            aria-label="Changer de langue"
           >
             <option value="fr" selected>FR</option>
             <option value="en">EN</option>
@@ -87,11 +131,14 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navMenu"
+          aria-label="Basculer la navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </nav>
+    
+    <main>
 
     <!-- SECTION HOME -->
     <section id="home" class="d-flex align-items-center vh-100">
@@ -144,7 +191,7 @@
                 <li class="icon-content">
                   <a
                     href="https://github.com/samych26"
-                    aria-label="GitHub"
+                    aria-label="Profil GitHub de Samy Cherfa"
                     data-social="github"
                     target="_blank"
                   >
@@ -261,7 +308,7 @@
                 modernes pour Android et iOS.
               </p>
               <!-- Bouton de téléchargement -->
-              <a href="assets/UdemyFlutter.pdf" download>
+              <a href="assets/UdemyFlutter.pdf" download aria-label="Télécharger la certification Flutter">
                 <button class="diplome-btn">
                   <svg
                     class="diplome-icon"
@@ -292,7 +339,7 @@
                 Formation Udemy en web design et Figma, axée sur la création d'interfaces modernes et l'UX/UI.
               </p>
 
-              <a href="assets/CertificatUdemy.pdf" download>
+              <a href="assets/CertificatUdemy.pdf" download aria-label="Télécharger la certification Design">
                 <button class="diplome-btn">
                   <svg
                     class="diplome-icon"
@@ -323,7 +370,7 @@
                 Formation POO en Java à l'école Tusna, axée sur les concepts avancés de la programmation orientée objet et la réalisation de projets pratiques.
               </p>
 
-              <a href="assets/Attestation formation_Java.pdff" download>
+              <a href="assets/Attestation formation_Java.pdff" download aria-label="Télécharger la certification Java">
                 <button class="diplome-btn">
                   <svg
                     class="diplome-icon"
@@ -566,6 +613,7 @@
                 href="https://github.com/samych26/Pong"
                 target="_blank"
                 class="bt"
+                aria-label="Code source du projet Pong Game"
               >
                 <div class="light-holder">
                   <div class="dot"></div>
@@ -591,6 +639,7 @@
                 href="https://github.com/samych26/Qoffa"
                 target="_blank"
                 class="bt"
+                aria-label="Code source du projet Qoffa"
               >
                 <div class="light-holder">
                   <div class="dot"></div>
@@ -615,6 +664,7 @@
                 href="https://github.com/Crystaltrd/Binary-Echoes"
                 target="_blank"
                 class="bt"
+                aria-label="Code source du projet Echoes"
               >
                 <div class="light-holder">
                   <div class="dot"></div>
@@ -640,6 +690,7 @@
                 href="https://github.com/samych26/PlayMaster"
                 target="_blank"
                 class="bt"
+                aria-label="Code source du projet PlayMaster"
               >
                 <div class="light-holder">
                   <div class="dot"></div>
@@ -666,6 +717,7 @@
         <h2 class="mb-4 text-center">Contact</h2>
         <form id="contact-form">
           <div class="mb-3">
+            <label for="contact-name" class="visually-hidden">Nom</label>
             <input
               id="contact-name"
               type="text"
@@ -675,6 +727,7 @@
             />
           </div>
           <div class="mb-3">
+            <label for="contact-email" class="visually-hidden">Email</label>
             <input
               id="contact-email"
               type="email"
@@ -684,6 +737,7 @@
             />
           </div>
           <div class="mb-3">
+            <label for="contact-message" class="visually-hidden">Message</label>
             <textarea
               id="contact-message"
               name="message"
@@ -699,9 +753,10 @@
         <div id="contact-feedback" class="mt-3 text-center"></div>
       </div>
     </section>
+    </main>
 
     <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
 
     <!-- FOOTER -->
     <footer class="py-4 text-center">
@@ -711,9 +766,9 @@
     </footer>
 
     <!-- Bootstrap JS bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 
     <!-- Ton JS -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
   </body>
 </html>

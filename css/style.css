@@ -392,7 +392,7 @@ section h4 {
   font-weight: 700;
   letter-spacing: 2px;
 }
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+/* Google Fonts import moved to index.html for performance */
 
 /* Cards */
 body.dark-theme .card {
