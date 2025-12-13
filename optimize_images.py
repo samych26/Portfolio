@@ -1,48 +1,40 @@
 from PIL import Image
 import os
+import glob
 
 ASSETS_DIR = r"c:\Users\samyc\OneDrive\Bureau\portfolio\assets"
 
 def optimize_images():
-    # Targeted files to convert
+    # Targeted files to convert based on previous list_dir
     files_to_process = [
         "Mobile.jpg", "Design.jpg", "Portrait.png", "java.jpg", 
-        "pdp.jpg", "pdp2.jpg", "qoffa.png", "Echos.png", "logo.png",
-        "Pong-game.ico" # Checking if pillow can handle ico, if not might need skip or specific handler, but let's try. Actually ico usually doesn't need webp, but let's see. Best to stick to main images first.
+        "pdp.jpg", "pdp2.jpg", "qoffa.png", "Echos.png", "logo.png"
     ]
-    
-    # Filter only standard image formats for webp conversion usually
-    extensions = ('.jpg', '.jpeg', '.png')
 
-    for filename in os.listdir(ASSETS_DIR):
-        if not filename.lower().endswith(extensions):
-            continue
-            
+    for filename in files_to_process:
         filepath = os.path.join(ASSETS_DIR, filename)
-        
+        if not os.path.exists(filepath):
+            print(f"Skipping {filename}, not found.")
+            continue
+
         try:
             with Image.open(filepath) as img:
-                basename = os.path.splitext(filename)[0]
-                webp_path = os.path.join(ASSETS_DIR, f"{basename}.webp")
-
-                # Resize based on filename
-                if "Portrait" in filename:
-                    target_width = 700
-                    if img.width > target_width:
-                        ratio = target_width / img.width
-                        new_height = int(img.height * ratio)
-                        img = img.resize((target_width, new_height), Image.Resampling.LANCZOS)
-                        print(f"Resized {filename} to {target_width}x{new_height}")
-                else:
-                    MAX_WIDTH = 1200
-                    if img.width > MAX_WIDTH:
-                        ratio = MAX_WIDTH / img.width
-                        new_height = int(img.height * ratio)
-                        img = img.resize((MAX_WIDTH, new_height), Image.Resampling.LANCZOS)
-                        print(f"Resized {filename} to {MAX_WIDTH}x{new_height}")
+                # Calculate new dimensions if image is very large
+                # Max width 1200px should be sufficient for this portfolio usage
+                MAX_WIDTH = 1200
+                if img.width > MAX_WIDTH:
+                    ratio = MAX_WIDTH / img.width
+                    new_height = int(img.height * ratio)
+                    img = img.resize((MAX_WIDTH, new_height), Image.Resampling.LANCZOS)
+                    print(f"Resized {filename} to {MAX_WIDTH}x{new_height}")
 
                 # Save as WebP
+                basename = os.path.splitext(filename)[0]
+                webp_path = os.path.join(ASSETS_DIR, f"{basename}.webp")
+                
+                # Use slightly higher quality for portrait to maintain details
                 quality = 85 if "Portrait" in filename else 80
+                
                 img.save(webp_path, "WEBP", quality=quality)
                 
                 old_size = os.path.getsize(filepath)
