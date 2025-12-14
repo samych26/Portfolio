@@ -2,9 +2,9 @@ from PIL import Image
 import os
 import glob
 
-ASSETS_DIR = r"c:\Users\samyc\OneDrive\Bureau\portfolio\assets"
+ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 
-def optimize_images():
+def optimize_images(assets_dir: str = ASSETS_DIR):
     # Mapping of source file -> (output filename, max_width)
     # If source is different from current usage (e.g. using _opt versions currently), 
     # we use the high-res source to generate the new webp.
@@ -22,8 +22,8 @@ def optimize_images():
     ]
 
     for source_file, output_name, max_wd in images_to_process:
-        source_path = os.path.join(ASSETS_DIR, source_file)
-        output_path = os.path.join(ASSETS_DIR, output_name)
+        source_path = os.path.join(assets_dir, source_file)
+        output_path = os.path.join(assets_dir, output_name)
 
         if not os.path.exists(source_path):
             print(f"Skipping {source_file}, not found.")
@@ -58,4 +58,11 @@ def optimize_images():
             print(f"Error processing {source_file}: {e}")
 
 if __name__ == "__main__":
-    optimize_images()
+    import argparse
+    parser = argparse.ArgumentParser(description="Optimiser les images en WebP")
+    parser.add_argument("--assets", dest="assets", default=ASSETS_DIR, help="Chemin vers le dossier assets")
+    args = parser.parse_args()
+    if not os.path.isdir(args.assets):
+        print(f"Assets introuvable: {args.assets}")
+    else:
+        optimize_images(args.assets)

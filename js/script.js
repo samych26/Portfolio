@@ -232,10 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ----- Scroll / nav activation -----
+  // Optimisation: listeners passifs pour le défilement
   window.addEventListener('scroll', () => {
     updateTimeline();
     activateNavLink();
-  });
+  }, { passive: true });
 
   window.addEventListener('resize', updateTimeline);
 
@@ -264,7 +265,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+      const navbarHeight = (document.querySelector('.navbar')?.offsetHeight) || 80;
       const targetPosition = target.offsetTop - navbarHeight - 80; 
       
       window.scrollTo({
@@ -295,13 +296,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   activateNavLink();
 });
 
-// Initialiser EmailJS
+// Initialiser EmailJS avec garde de sécurité
 (function() {
-  emailjs.init("4cIJSsFLljKsZzE3e");
+  if (typeof emailjs !== 'undefined' && emailjs?.init) {
+    emailjs.init("4cIJSsFLljKsZzE3e");
+  }
 })();
 
 // Gestion du formulaire
-document.getElementById("contact-form").addEventListener("submit", function(e) {
+document.getElementById("contact-form")?.addEventListener("submit", function(e) {
   e.preventDefault();
 
   const feedback = document.getElementById("contact-feedback");
@@ -326,6 +329,12 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
   }
 
   feedback.innerHTML = "";
+
+  if (typeof emailjs === 'undefined' || !emailjs?.sendForm) {
+    feedback.textContent = "❌ Service email indisponible. Réessaie plus tard.";
+    feedback.style.color = "red";
+    return;
+  }
 
   emailjs.sendForm("service_k2cuomh","template_ecu4ue4", this)
     .then(function() {
